@@ -5,6 +5,12 @@ The **solid angle** is a geometric measure used to quantify how much an object, 
 
 This project presents an efficient method for computing the **solid angle**, particularly when the **point source** is located near a surface boundary (e.g., in **acoustic simulations considering external noise**). In these scenarios, simple approximations may become inefficient, and precise computations are required.
 
+
+![image](https://github.com/user-attachments/assets/804c6430-1e7a-4fb9-bd2f-8b9a251dd39a)
+
+
+
+
 ---
 
 ### Table of Contents
