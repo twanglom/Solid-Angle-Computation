@@ -1,7 +1,7 @@
 # Solid-Angle-Computation
 
 ### Overview
-The **solid angle** is a geometric measure used to quantify how much an object, surface, or area appears to spread out in three dimensions from a specific point of view. It is a crucial concept in various fields such as radiation transfer, lighting, and acoustics, particularly when computing energy distribution or noise levels in environments such as rooms or spaces where external noise is considered.
+The $${\color{blue} Solid \space Angle}$$ is a geometric measure used to quantify how much an object, surface, or area appears to spread out in three dimensions from a specific point of view. It is a crucial concept in various fields such as radiation transfer, lighting, and acoustics, particularly when computing energy distribution or noise levels in environments such as rooms or spaces where external noise is considered.
 
 This project presents an efficient method for computing the **solid angle**, particularly when the **point source** is located near a surface boundary (e.g., in **acoustic simulations considering external noise**). In these scenarios, simple approximations may become inefficient, and precise computations are required.
 
@@ -131,3 +131,74 @@ To use this project, you'll need the following:
 
 ---
 ### Example
+
+The numerical computation of solid angle will be compared with analytical solution of sphere geometry $R = 1$ m. The numerical demonstrate using difference mesh number.   
+![image](https://github.com/user-attachments/assets/b4b13285-cf92-40d5-b274-6ccaf470be9b)
+
+
+```python
+###### Sphere triangle method 
+
+import numpy as np
+import pyvista as pv
+
+# Function to calculate the solid angle subtended by a spherical triangle
+def spherical_triangle_solid_angle(v1, v2, v3):
+    # Normalize the vectors
+    v1 = v1 / np.linalg.norm(v1)
+    v2 = v2 / np.linalg.norm(v2)
+    v3 = v3 / np.linalg.norm(v3)
+
+    # Calculate angles between vectors
+    a = np.arccos(np.clip(np.dot(v2, v3), -1.0, 1.0))
+    b = np.arccos(np.clip(np.dot(v1, v3), -1.0, 1.0))
+    c = np.arccos(np.clip(np.dot(v1, v2), -1.0, 1.0))
+
+    # Calculate the solid angle using spherical excess formula
+    s = (a + b + c) / 2
+    tan_half_s = np.tan(s / 2)
+    tan_half_a = np.tan(a / 2)
+    tan_half_b = np.tan(b / 2)
+    tan_half_c = np.tan(c / 2)
+
+    # Spherical excess
+    E = 4 * np.arctan(np.sqrt(max(0, np.tan(s / 2) * np.tan((s - a) / 2) * np.tan((s - b) / 2) * np.tan((s - c) / 2))))
+
+    # Return the solid angle
+    return E
+
+# Load the VTK file and extract the surface using pyvista
+shape = pv.read('sphere.vtk')
+shape = shape.extract_surface()
+
+# Define the observation point at the center of the sphere
+observation_point = np.array([0, 0, 0])
+
+# Loop through cells to get their vertices and compute the solid angle
+numerical_solid_angle = 0
+
+for i in range(shape.n_cells):
+    cell = shape.extract_cells(i)
+    vertices = cell.points - observation_point  # Translate vertices relative to the observation point
+    
+    if len(vertices) >= 3:  # Ensure we have at least a triangle
+        for j in range(1, len(vertices) - 1):
+            v1 = vertices[0]
+            v2 = vertices[j]
+            v3 = vertices[j + 1]
+            numerical_solid_angle += spherical_triangle_solid_angle(v1, v2, v3)
+
+# Exact solution for solid angle of the entire sphere
+exact_solid_angle = 4 * np.pi
+
+# Print the results
+print(f"Numerical Solid Angle using Spherical Triangle Method: {numerical_solid_angle}")
+print(f"Exact Solid Angle: {exact_solid_angle}")
+
+```
+
+#### Results
+![image](https://github.com/user-attachments/assets/1a2f910d-085c-4990-8eb2-4376a6f208d8)
+
+
+
