@@ -27,6 +27,9 @@ This project presents an efficient method for computing the **solid angle**, par
 ### Introduction
 In acoustic simulations, calculating the solid angle subtended by surfaces near a point source is crucial for determining energy transfer, especially when considering noise reflections or diffraction from room boundaries. This project provides a method that leverages the spherical triangle formulation, which is particularly efficient for surfaces near the source.
 
+![image](https://github.com/user-attachments/assets/f88c5ecd-8c0b-43c6-aa61-37b5a9fedbb6)
+
+
 ---
 
 ### Basic Formulation
