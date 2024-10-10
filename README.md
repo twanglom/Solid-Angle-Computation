@@ -3,7 +3,7 @@
 ### Overview
 The **solid angle** is a geometric measure used to quantify how much an object, surface, or area appears to spread out in three dimensions from a specific point of view. It is a crucial concept in various fields such as radiation transfer, lighting, and acoustics, particularly when computing energy distribution or noise levels in environments such as rooms or spaces where external noise is considered.
 
-This project presents an efficient method for computing the **solid angle**, particularly when the **point source** is located near a surface boundary (e.g., in room acoustic simulations considering external noise). In these scenarios, simple approximations may become inefficient, and precise computations are required.
+This project presents an efficient method for computing the **solid angle**, particularly when the **point source** is located near a surface boundary (e.g., in **room acoustic simulations considering external noise**). In these scenarios, simple approximations may become inefficient, and precise computations are required.
 
 ---
 
