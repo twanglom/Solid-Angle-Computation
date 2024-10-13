@@ -20,7 +20,7 @@ This project presents an efficient method for computing the **solid angle**, par
   - [Spherical Triangle Method](#spherical-triangle-method)
 - [Usage](#usage)
 - [Example](#example)
-- [License](#license)
+- [Citation](#citation)
 
 ---
 
@@ -201,4 +201,6 @@ print(f"Exact Solid Angle: {exact_solid_angle}")
 ![image](https://github.com/user-attachments/assets/1a2f910d-085c-4990-8eb2-4376a6f208d8)
 
 
+### Citation
+Tanasak Wanglomklang. (2024). Solid-Angle-Computation (v1.0) [Source code]. GitHub. https://github.com/username/Solid-Angle-Computation
 
