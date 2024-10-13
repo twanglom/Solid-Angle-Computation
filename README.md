@@ -202,5 +202,5 @@ print(f"Exact Solid Angle: {exact_solid_angle}")
 
 
 ### Citation
-Tanasak Wanglomklang. (2024). Solid-Angle-Computation (v1.0) [Source code]. GitHub. https://github.com/username/Solid-Angle-Computation
+Tanasak Wanglomklang. (2024). Solid-Angle-Computation (v1.0) [Source code]. GitHub. https://github.com/twanglom/Solid-Angle-Computation
 
